@@ -155,8 +155,8 @@ namespace Pong
             //set starting position for paddles on new game and point scored 
             const int PADDLE_EDGE = 20;  // buffer distance between screen edge and paddle            
 
-            p1.Width = p2.Width = 10;    //height for both paddles set the same
-            p1.Height = p2.Height = 40;  //width for both paddles set the same
+            p1.Width = p2.Width = 10;    //width for both paddles set the same
+            p1.Height = p2.Height = 60;  //height for both paddles set the same
 
             //p1 starting position
             p1.X = PADDLE_EDGE;
@@ -314,7 +314,7 @@ namespace Pong
                 else
                 {
                     SetParameters();
-                    ballMoveRight = false;
+                    ballMoveRight = true;
                 }
 
             }
