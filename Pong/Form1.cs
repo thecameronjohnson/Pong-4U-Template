@@ -28,7 +28,7 @@ namespace Pong
         SoundPlayer collisionSound = new SoundPlayer(Properties.Resources.collision);
 
         //determines whether a key is being pressed or not
-        Boolean aKeyDown, zKeyDown, jKeyDown, mKeyDown;
+        Boolean upKeyDown,downKeyDown, leftKeyDown, rightKeyDown, wKeyDown, sKeyDown, aKeyDown, dKeyDown;
 
         // check to see if a new game can be started
         Boolean newGameOk = true;
@@ -36,7 +36,7 @@ namespace Pong
         //ball directions, speed, and rectangle
         Boolean ballMoveRight = true;
         Boolean ballMoveDown = true;
-        const int BALL_SPEED = 4;
+        int BALL_SPEED = 4;
         Rectangle ball;
 
         //paddle speeds and rectangles
@@ -61,18 +61,33 @@ namespace Pong
             //check to see if a key is pressed and set is KeyDown value to true if it has
             switch (e.KeyCode)
             {
+                case Keys.I:
+                    upKeyDown = true;
+                    break;
+                case Keys.K:
+                    downKeyDown = true;
+                    break;
+                case Keys.J:
+                    leftKeyDown = true;
+                    break;
+                case Keys.L:
+                    rightKeyDown = true;
+                    break;
+
+
+                case Keys.W:
+                    wKeyDown = true;
+                    break;
+                case Keys.S:
+                    sKeyDown = true;
+                    break;
                 case Keys.A:
                     aKeyDown = true;
                     break;
-                case Keys.Z:
-                    zKeyDown = true;
+                case Keys.D:
+                    dKeyDown = true;
                     break;
-                case Keys.J:
-                    jKeyDown = true;
-                    break;
-                case Keys.M:
-                    mKeyDown = true;
-                    break;
+
                 case Keys.Y:
                 case Keys.Space:
                     if (newGameOk)
@@ -95,17 +110,31 @@ namespace Pong
             //check to see if a key has been released and set its KeyDown value to false if it has
             switch (e.KeyCode)
             {
+                case Keys.I:
+                   upKeyDown = false;
+                    break;
+                case Keys.K:
+                    downKeyDown = false;
+                    break;
+                case Keys.J:
+                    leftKeyDown = false;
+                    break;
+                case Keys.L:
+                    rightKeyDown = false;
+                    break;
+
+
+                case Keys.W:
+                    wKeyDown = false;
+                    break;
+                case Keys.S:
+                    sKeyDown = false;
+                    break;
                 case Keys.A:
                     aKeyDown = false;
                     break;
-                case Keys.Z:
-                    zKeyDown = false;
-                    break;
-                case Keys.J:
-                    jKeyDown = false;
-                    break;
-                case Keys.M:
-                    mKeyDown = false;
+                case Keys.D:
+                    dKeyDown = false;
                     break;
             }
         }
@@ -179,30 +208,59 @@ namespace Pong
 
             #region update paddle positions
 
-            if (aKeyDown == true && p1.Y > 0)
+            if (wKeyDown == true && p1.Y > 0)
             {
                 //create code to move player 1 paddle up using p1.Y and PADDLE_SPEED
                 p1.Y -= PADDLE_SPEED;
             }
 
             //create an if statement and code to move player 1 paddle down using p1.Y and PADDLE_SPEED
-            if (zKeyDown == true && p1.Y < this.Height - p1.Height)
+            if (sKeyDown == true && p1.Y < this.Height - p1.Height)
             {
                 //create code to move player 1 paddle down using p1.Y and PADDLE_SPEED
                 p1.Y += PADDLE_SPEED;
             }
+            if (aKeyDown == true && p1.X > 0)
+            {
+                //create code to move player 1 paddle up using p1.Y and PADDLE_SPEED
+                p1.X -= PADDLE_SPEED;
+            }
 
-            if (jKeyDown == true && p2.Y > 0)
+            //create an if statement and code to move player 1 paddle down using p1.Y and PADDLE_SPEED
+            if (dKeyDown == true && p1.X < this.Width - p1.Width)
+            {
+                //create code to move player 1 paddle down using p1.Y and PADDLE_SPEED
+                p1.X += PADDLE_SPEED;
+            }
+
+
+
+
+            if (upKeyDown == true && p2.Y > 0)
             {
                 //create an if statement and code to move player 2 paddle up using p2.Y and PADDLE_SPEED
                 p2.Y -= PADDLE_SPEED;
 
             }
-            if (mKeyDown == true && p2.Y < this.Height - p2.Height)
+            if (downKeyDown == true && p2.Y < this.Height - p2.Height)
             {
                 //create an if statement and code to move player 2 paddle down using p2.Y and PADDLE_SPEED
                 p2.Y += PADDLE_SPEED;
             }
+            if (leftKeyDown == true && p2.X > 0)
+            {
+                //create an if statement and code to move player 2 paddle up using p2.Y and PADDLE_SPEED
+                p2.X -= PADDLE_SPEED;
+
+            }
+            if (rightKeyDown == true && p2.X < this.Width - p2.Width)
+            {
+                //create an if statement and code to move player 2 paddle down using p2.Y and PADDLE_SPEED
+                p2.X += PADDLE_SPEED;
+            }
+
+
+
 
             #endregion
 
@@ -225,6 +283,7 @@ namespace Pong
             {
                 ballMoveRight = !ballMoveRight;
                 collisionSound.Play();
+                BALL_SPEED = BALL_SPEED + 1;
             }
                              
             /*  ENRICHMENT
@@ -243,6 +302,7 @@ namespace Pong
                 // --- update player 2 score
                 scoreSound.Play();
                 player2Score++;
+                BALL_SPEED = 4;
 
                 // use if statement to check to see if player 2 has won the game. If true run 
                 // GameOver method. Else change direction of ball and call SetParameters method.
@@ -263,6 +323,7 @@ namespace Pong
             {
                 scoreSound.Play();
                 player1Score++;
+                BALL_SPEED = 4;
 
 
                 if (player1Score == gameWinScore)
@@ -305,8 +366,8 @@ namespace Pong
             // --- pause for two seconds 
             Thread.Sleep(2000);
             // --- use the startLabel to ask the user if they want to play again
-            startLabel.Text = "Do you want to play again?/n" +
-                "Press space to begin";
+            startLabel.Text = "Do you want to play again?\n" +
+                "Press space to begin or N to cancel";
 
         }
 
