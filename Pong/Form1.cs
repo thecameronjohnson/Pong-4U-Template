@@ -59,6 +59,7 @@ namespace Pong
         private void Form1_KeyDown(object sender, KeyEventArgs e)
         {
             //check to see if a key is pressed and set is KeyDown value to true if it has
+            //I made the paddles able to move left and right using the wasd moveset for p1. p2 uses ijkl to do this
             switch (e.KeyCode)
             {
                 case Keys.I:
@@ -110,6 +111,7 @@ namespace Pong
             //check to see if a key has been released and set its KeyDown value to false if it has
             switch (e.KeyCode)
             {
+                //I made the paddles able to move left and right using the wasd moveset for p1. p2 uses ijkl to do this
                 case Keys.I:
                    upKeyDown = false;
                     break;
@@ -208,54 +210,47 @@ namespace Pong
 
             #region update paddle positions
 
+            //moves paddle for player 1 up and down if w or s are pressed
             if (wKeyDown == true && p1.Y > 0)
             {
-                //create code to move player 1 paddle up using p1.Y and PADDLE_SPEED
                 p1.Y -= PADDLE_SPEED;
             }
-
-            //create an if statement and code to move player 1 paddle down using p1.Y and PADDLE_SPEED
             if (sKeyDown == true && p1.Y < this.Height - p1.Height)
             {
-                //create code to move player 1 paddle down using p1.Y and PADDLE_SPEED
                 p1.Y += PADDLE_SPEED;
             }
+
+            //moves the paddle for player 1 left or right if a or d are pressed
             if (aKeyDown == true && p1.X > 0)
             {
-                //create code to move player 1 paddle up using p1.Y and PADDLE_SPEED
                 p1.X -= PADDLE_SPEED;
             }
-
-            //create an if statement and code to move player 1 paddle down using p1.Y and PADDLE_SPEED
             if (dKeyDown == true && p1.X < this.Width - p1.Width)
             {
-                //create code to move player 1 paddle down using p1.Y and PADDLE_SPEED
                 p1.X += PADDLE_SPEED;
             }
 
 
 
-
+            //moves paddle for player 2 up and down if i or k are pressed
             if (upKeyDown == true && p2.Y > 0)
             {
-                //create an if statement and code to move player 2 paddle up using p2.Y and PADDLE_SPEED
                 p2.Y -= PADDLE_SPEED;
 
             }
             if (downKeyDown == true && p2.Y < this.Height - p2.Height)
             {
-                //create an if statement and code to move player 2 paddle down using p2.Y and PADDLE_SPEED
                 p2.Y += PADDLE_SPEED;
             }
+
+            //moves the paddle for player 2 left or right if j or l are pressed
             if (leftKeyDown == true && p2.X > 0)
             {
-                //create an if statement and code to move player 2 paddle up using p2.Y and PADDLE_SPEED
                 p2.X -= PADDLE_SPEED;
 
             }
             if (rightKeyDown == true && p2.X < this.Width - p2.Width)
             {
-                //create an if statement and code to move player 2 paddle down using p2.Y and PADDLE_SPEED
                 p2.X += PADDLE_SPEED;
             }
 
@@ -319,6 +314,7 @@ namespace Pong
 
             }
 
+            //same as above but this time check for collision with the right wall
             if (ball.X > this.Width - ball.Width)
             {
                 scoreSound.Play();
@@ -337,7 +333,6 @@ namespace Pong
                     ballMoveRight = false;
                 }
             }
-            //same as above but this time check for collision with the right wall
 
             #endregion
             
