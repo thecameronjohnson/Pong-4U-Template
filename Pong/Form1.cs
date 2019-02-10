@@ -28,7 +28,7 @@ namespace Pong
         SoundPlayer collisionSound = new SoundPlayer(Properties.Resources.collision);
 
         //determines whether a key is being pressed or not
-        Boolean upKeyDown,downKeyDown, leftKeyDown, rightKeyDown, wKeyDown, sKeyDown, aKeyDown, dKeyDown;
+        Boolean upKeyDown, downKeyDown, leftKeyDown, rightKeyDown, wKeyDown, sKeyDown, aKeyDown, dKeyDown;
 
         // check to see if a new game can be started
         Boolean newGameOk = true;
@@ -104,7 +104,7 @@ namespace Pong
                     break;
             }
         }
-        
+
         // -- YOU DO NOT NEED TO MAKE CHANGES TO THIS METHOD
         private void Form1_KeyUp(object sender, KeyEventArgs e)
         {
@@ -113,7 +113,7 @@ namespace Pong
             {
                 //I made the paddles able to move left and right using the wasd moveset for p1. p2 uses ijkl to do this
                 case Keys.I:
-                   upKeyDown = false;
+                    upKeyDown = false;
                     break;
                 case Keys.K:
                     downKeyDown = false;
@@ -280,7 +280,7 @@ namespace Pong
                 collisionSound.Play();
                 BALL_SPEED = BALL_SPEED + 1;
             }
-                             
+
             /*  ENRICHMENT
              *  Instead of using two if statments as noted above see if you can create one
              *  if statement with multiple conditions to play a sound and change direction
@@ -292,7 +292,7 @@ namespace Pong
 
             if (ball.X < 0)  // ball hits left wall logic
             {
-               
+
                 // --- play score sound
                 // --- update player 2 score
                 scoreSound.Play();
@@ -335,11 +335,11 @@ namespace Pong
             }
 
             #endregion
-            
+
             //refresh the screen, which causes the Form1_Paint method to run
             this.Refresh();
         }
-        
+
         /// <summary>
         /// Displays a message for the winner when the game is over and allows the user to either select
         /// to play again or end the program
